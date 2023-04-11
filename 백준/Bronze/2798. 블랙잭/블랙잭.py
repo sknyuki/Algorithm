@@ -1,19 +1,15 @@
 import sys
-from itertools import combinations
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
 listA = list(map(int, input().split()))
-com = combinations(listA, 3)
 result = 0
 
-
-for i in com:
-    if sum(i) > M:
-        continue
-    else:
-        if result < sum(i):
-            result = sum(i)
-
+for i in range(N-2):
+    for j in range(i+1, N-1):
+        for x in range(j+1, N):
+            if listA[i]+listA[j]+listA[x] <= M:
+                if result < listA[i]+listA[j]+listA[x]:
+                    result = listA[i]+listA[j]+listA[x]
 
 print(result)
