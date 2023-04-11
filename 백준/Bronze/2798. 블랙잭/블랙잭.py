@@ -10,7 +10,7 @@ result = 0
 
 for i in com:
     if sum(i) > M:
-        pass
+        continue
     else:
         if result < sum(i):
             result = sum(i)
