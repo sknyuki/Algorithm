@@ -1,11 +1,11 @@
 import sys
 input = sys.stdin.readline
-W = input().strip()
+S = input().strip()
 K = ['K', 'O', 'R', 'E', 'A']
 Y = ['Y', 'O', 'N', 'S', 'E', 'I']
 
 
-for i in W:
+for i in S:
     if i in K:
         K.remove(i)
         if len(K) == 0:
