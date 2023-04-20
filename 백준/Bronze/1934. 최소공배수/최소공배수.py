@@ -1,7 +1,6 @@
 import sys
 input = sys.stdin.readline
-N = int(input())
-
+N=int(input())
 
 def sol(A, B):
     cnt = 1
@@ -14,8 +13,8 @@ def sol(A, B):
 
 
 for i in range(N):
-    A, B = map(int, input().split())
-    if A > B:
-        sol(A, B)
-    else:
-        sol(B, A)
+    X, Y = map(int, input().split())
+    A=max(X,Y)
+    B=min(X,Y)
+    sol(A, B)
+
