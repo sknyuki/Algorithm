@@ -15,6 +15,6 @@ C, D = map(int, input().split())
 
 E = A*D+B*C
 F = B*D
-temp = GCD(max(F, E), min(F, E))
+temp = GCD(F, E)
 print(E//temp,
       F//temp)
