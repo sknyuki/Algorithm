@@ -9,23 +9,7 @@ def solution(N):
         if pn[i]:
             for j in range(i*i, N+1, i):
                 pn[j] = False
-    primes = list(i for i in range(len(pn)) if pn[i])
-    return primes
-
-
-def find_pn(N, M):
-    answer = 0
-    cnt = 0
-    temp = 0
-    while True:
-        temp = primes_list[cnt]
-        if N < temp <= M:
-            answer += 1
-        elif temp > M:
-            break
-
-        cnt += 1
-    return answer
+    return pn
 
 
 input_list = []
@@ -36,8 +20,9 @@ while True:
     input_list.append(N)
 
 primes_list = solution(max(input_list)*3)
+
 for i in input_list:
     if i == 1:
         print(1)
     else:
-        print(find_pn(i, 2*i))
+        print(primes_list[i+1:2*i+1].count(True))
