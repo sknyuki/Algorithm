@@ -21,5 +21,3 @@ M, N = int(M), int(N)
 for i in range(M, N+1):
     if solution(i):
         print(i)
-    if M == N:
-        break
