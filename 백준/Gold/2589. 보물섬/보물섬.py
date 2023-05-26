@@ -22,14 +22,14 @@ def bfs(y, x):
 
 Y, X = map(int, input().split())
 board = [list(input().strip()) for _ in range(Y)]
-max_value = []
+max_value = 0
 
 # 'L'마다 탐색
 # -> return되는 visited(최종 이동거리값)을 max_value에 저장
 for i in range(Y):
     for j in range(X):
         if board[i][j] == "L":
-            max_value.append(bfs(i, j))
+            max_value = max(max_value, bfs(i, j))
 
 # max값 출력
-print(max(max_value))
+print(max_value)
