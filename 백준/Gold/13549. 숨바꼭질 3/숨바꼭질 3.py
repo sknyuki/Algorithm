@@ -12,11 +12,11 @@ def bfs(N, K):
         if a == K:
             print(time[a]-1)
             break
-        for i in (a-1, a+1, a*2):
+        for i in (a*2,a-1, a+1):# a*2를 제일 앞에 배치 하여 우선적으로 계산하도록함 
             if 0 <= i <= 100000 and time[i] == 0:
                 if i == a*2:
                     time[i] = time[a]
-                    que.appendleft(i)  # 순간이동은 소요시간 0초이기에 우선순위가 나머지 2개보다 높음
+                    que.append(i)  
                 else:
                     time[i] = time[a]+1
                     que.append(i)
