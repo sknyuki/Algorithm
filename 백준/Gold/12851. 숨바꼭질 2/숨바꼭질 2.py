@@ -35,9 +35,20 @@ Max = 100001
 locate = [0]*Max
 cnt_dict = {}
 
-bfs(N, 0)
+if N > K: #언니가 앞에 있을때
+    cnt = 1
+    while(N > K):
+        N -= 1
+        locate[K] += 1
+    print(locate[K])
+    print(cnt)
+elif N == K: #동생이랑 위치가 같을때
+    print(0)
+    print(1)
+else: #동생이 앞에 있을때
+    bfs(N, 0)
+    for key in cnt_dict.keys():
+        print(key)
+        print(cnt_dict[key])
+        exit(0)
 
-for key in cnt_dict.keys():
-    print(key)
-    print(cnt_dict[key])
-    exit(0)
