@@ -6,13 +6,12 @@ input = sys.stdin.readline
 def bfs(N, K):
     que = deque()
     que.append(N)
-    time[N] = 1
     while que:
         a = que.popleft()
         if a == K:
-            print(time[a]-1)
+            print(time[a])
             break
-        for i in (a*2,a-1, a+1):# a*2를 제일 앞에 배치 하여 우선적으로 계산하도록함 
+        for i in (a*2,a-1, a+1):
             if 0 <= i <= 100000 and time[i] == 0:
                 if i == a*2:
                     time[i] = time[a]
