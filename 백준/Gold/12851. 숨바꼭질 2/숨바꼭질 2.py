@@ -2,53 +2,48 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-# 수빈이의 행동반경
-# -> X+1 or X-1 or 2*X (이동 벡터) 이동 할때 전부 1초 소요
-# 찾게 되는 최소 cnt 횟수와 그 경우의 수
-# dict사용? key가 min인 값의 value를 추출
+# 언니의 위치가 동생의 위치와 같거나 앞에있을때는 따로 처리
+# 언니가 뒤에있을때만 bfs사용
 
-# 이번 문제의 solition point
-# 1.방문처리의 타이밍을 que.popleft()의 이후에 처리해주는 것
-# 2. visited에 직접 이동 횟수를 입력하는 것이 아닌 que의 파라미터로 cnt를 추가
+# 리스트 way와 리스트 visited 2개 사용
+# visited는 이동 횟수 ways는 가지수
+# 언제 que.append 해줄지 고민필요
 
 
-def bfs(s, cnt):
+def bfs(n):
     que = deque()
-    que.append([s, cnt])
-    locate[s] = 1
+    que.append(n)
+    locate[n] = 1
+    ways[n] = 1
     while que:
-        s, cnt = que.popleft()
-        locate[s] = 1
-        if s == K and cnt <= abs(K-N):  # 여동생의 위치에 도달하면 dict[이동횟수]+=1
-            if cnt not in cnt_dict.keys():
-                cnt_dict[cnt] = 1
-            else:
-                cnt_dict[cnt] += 1
+        now = que.popleft()
+        for next in (now-1, now+1, now*2):
+            if 0 <= next < Max:
 
-        for sm in (s-1, s+1, s*2):
-            if 0 <= sm < Max and not locate[sm]:
-                que.append([sm, cnt+1])
+                if not locate[next]:  # 처음 방문했을때
+                    que.append(next)  # 처음 방문하였을때만 que에 추가
+                    locate[next] = locate[now]+1
+                    ways[next] += ways[now]  #가지수+
+
+                elif locate[next] == locate[now]+1:  # 최단시간으로 재방문했을때
+                    ways[next] += ways[now]
+
+    locate[K] -= 1
 
 
 N, K = map(int, input().split())
-Max = 100001
+Max = 200001
 locate = [0]*Max
-cnt_dict = {}
+ways = [0]*Max
 
-if N > K: #언니가 앞에 있을때
-    cnt = 1
-    while(N > K):
-        N -= 1
-        locate[K] += 1
-    print(locate[K])
-    print(cnt)
-elif N == K: #동생이랑 위치가 같을때
+if K < N:
+    print(abs(K-N))
+    print(1)
+elif K == N:
     print(0)
     print(1)
-else: #동생이 앞에 있을때
-    bfs(N, 0)
-    for key in cnt_dict.keys():
-        print(key)
-        print(cnt_dict[key])
-        exit(0)
+else:
+    bfs(N)
+    print(locate[K])
+    print(ways[K])
 
