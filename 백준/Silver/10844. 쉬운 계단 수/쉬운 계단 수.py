@@ -21,11 +21,11 @@ for i in range(1,10):
 
 for i in range(2,N+1):#십의 자리수(2) 부터 N+1까지
     for j in range(10):#0부터 9까지
-        if j==0:
-            dp[i][j]=dp[i-1][j+1]
-        elif j==9:
-            dp[i][j]=dp[i-1][j-1]
+        if j==0:#0일때
+            dp[i][j]=dp[i-1][j+1]#이전 행의 1일때 경우의 수
+        elif j==9:#9일때
+            dp[i][j]=dp[i-1][j-1]#이전 행의 8일때 경우의 수
         else:
-            dp[i][j]=dp[i-1][j-1]+dp[i-1][j+1]
+            dp[i][j]=dp[i-1][j-1]+dp[i-1][j+1]#이전행 J±1의 값 합산
 
 print(sum(dp[N])%1000000000)
