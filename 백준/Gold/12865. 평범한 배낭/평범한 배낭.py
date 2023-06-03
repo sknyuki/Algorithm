@@ -11,7 +11,7 @@ input=sys.stdin.readline
 #                            dp[y-1][x]=이전물건중 지금 무게에 할당되는 가치
 
 N,K=map(int,input().split())
-A=sorted([list(map(int,input().split()))for _ in range(N)]+[[0,0]])
+A=[[0,0]]+[list(map(int,input().split()))for _ in range(N)]
 dp=list([0]*(K+1) for _ in range(N+1))
 
 for y in range(1,N+1):
@@ -23,3 +23,4 @@ for y in range(1,N+1):
 
 print(dp[N][K])
             
+
