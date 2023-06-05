@@ -1,11 +1,12 @@
 import sys
 input = sys.stdin.readline
 
-
 N = int(input())
-listA = list(map(int, input().split()))
+A = list(map(int, input().split()))
+dp = [0]*N
+dp[0] = A[0]
+for i in range(1, N):
+    dp[i] = max(dp[i-1]+A[i], A[i])
 
-for i in range(1,N): #[i]와 [i]+[i-1]을 비교하며 큰 값으로 [i]자리에 초기화
-    listA[i]=max(listA[i],sum(listA[i-1:i+1]))
-        
-print(max(listA))
+print(max(dp))
+
