@@ -10,7 +10,7 @@ input = sys.stdin.readline
 # A 0 1 2 3 3 3 3
 # K 0 1 2 3 3 4 4
 
-# 탐색중인 B의 값이 A의 값과 일치하면 dp[y][x]=dp[y-1][x-1]+1
+# 탐색중인 B의 값이 A의 값과 일치하면 dp[y][x]=dp[y-1][x]+1
 # else max(dp[y][x-1],dp[y-1][x])
 
 A = list(input().strip())
