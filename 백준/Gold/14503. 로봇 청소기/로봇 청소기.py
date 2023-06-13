@@ -2,22 +2,10 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-
-# 이동 함수
-# bfs로 초기 위치가 0이면 1로 바꾸고 cnt+=1 방향 설정및 이동 함수로 이동
-
-# 방향 설정용 함수
-# 디렉션:0,1,2,3
-# 디렉션들 별로 vector 설정
-# if 4개-> 0이면 진입 진입후 return y,x
-# 다 돌아도 0이 없고 뒤가 1(벽)이 아니면 진입 d별로 후방
-#  1이면 그대로 전체 종료
-
-
 # 방향으로의 무빙
 def move(y, x, vector, cnt):
     for vy, vx, d in vector:
-        my, mx, d = y+vy, x+vx, d
+        my, mx = y+vy, x+vx
         if 0 <= my < Y and 0 <= mx < X:
             if board[my][mx] == 0:  # 청소 할 곳이 나오면
                 return my, mx, d  # 꺾은 방향으로의 이동과 이동후 바라볼 방향 return
@@ -49,20 +37,14 @@ def bfs(sy, sx, d):
             cnt += 1
         if d == 0:  # 바라보는 방향에 따라 vecter 차별화
             y, x, d = move(y, x, vector0, cnt)
-            que.append([y, x])
-            continue
-        if d == 1:
+        elif d == 1:
             y, x, d = move(y, x, vector1, cnt)
-            que.append([y, x])
-            continue
-        if d == 2:
+        elif d == 2:
             y, x, d = move(y, x, vector2, cnt)
-            que.append([y, x])
-            continue
-        if d == 3:
+        elif d == 3:
             y, x, d = move(y, x, vector3, cnt)
-            que.append([y, x])
-            continue
+
+        que.append([y, x])
 
 
 Y, X = map(int, input().split())
