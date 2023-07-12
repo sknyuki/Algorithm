@@ -46,8 +46,6 @@ for _ in range(K):  # 移動回数
     board = [[[0, 0, []] for _ in range(N)] for _ in range(N)]
     for i in fireballs:
         move(i)  # board에 파이어볼들을 다 칠하면
-    #print(*board, sep="\n")
-    # print("========================================")
     fireballs = []  # 파리어볼 초기화
     for y in range(N):
         for x in range(N):
@@ -73,14 +71,14 @@ for _ in range(K):  # 移動回数
                     else:  # 1357일때
                         for sep_d in direction1357:
                             fireballs.append([fr, fc, fm, fs, sep_d])
-                board[y][x] = [0, 0, []]
+                board[y][x] = [0, 0, []] #분열된 자리는 빈공간으로
 
-    for y in range(N):
+    for y in range(N):#보드에 있는 모든 파이어볼을 다음루프에 투입
         for x in range(N):
             if board[y][x][0] != 0:
                 fireballs.append([y+1, x+1, board[y][x][0], board[y]
                                  [x][1], board[y][x][2][0]])
 
-for i in fireballs:
+for i in fireballs:#파이어볼의 모든 질량값을 더한 후 산출
     result += i[2]
 print(result)
