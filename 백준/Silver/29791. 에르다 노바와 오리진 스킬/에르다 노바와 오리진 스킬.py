@@ -6,16 +6,14 @@ def count_kills(n, m, d, s):
     E_kills = 1
     O_kills = 1
 
-    if len(d) > 1:
-        for i in range(1, n):
-            if d[i]-E_before >= 100:
-                E_kills += 1
-                E_before = d[i]
-    if len(s) > 1:
-        for j in range(1, m):
-            if s[j]-O_before >= 360:
-                O_kills += 1
-                O_before = s[j]
+    for i in range(1, n):
+        if d[i]-E_before >= 100:
+            E_kills += 1
+            E_before = d[i]
+    for j in range(1, m):
+        if s[j]-O_before >= 360:
+            O_kills += 1
+            O_before = s[j]
 
     return [E_kills, O_kills]
 
