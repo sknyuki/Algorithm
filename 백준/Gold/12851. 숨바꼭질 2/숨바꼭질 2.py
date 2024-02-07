@@ -1,49 +1,41 @@
 import sys
 from collections import deque
-input = sys.stdin.readline
-
-# 언니의 위치가 동생의 위치와 같거나 앞에있을때는 따로 처리
-# 언니가 뒤에있을때만 bfs사용
-
-# 리스트 way와 리스트 visited 2개 사용
-# visited는 이동 횟수 ways는 가지수
-# 언제 que.append 해줄지 고민필요
+input=sys.stdin.readline
 
 
-def bfs(n):
-    que = deque()
-    que.append(n)
-    locate[n] = 1
-    ways[n] = 1
+#가지수를 저장하는 방법..
+
+def bfs(N):
+    que=deque()
+    que.append(N)
+    ways[N]=1
     while que:
-        now = que.popleft()
-        for next in (now-1, now+1, now*2):
-            if 0 <= next < Max:
+        a=que.popleft()
+        for i in (a+1,a-1,2*a):
 
-                if not locate[next]:  # 처음 방문했을때
-                    que.append(next)  # 처음 방문하였을때만 que에 추가
-                    locate[next] = locate[now]+1
-                    ways[next] += ways[now]  #가지수+
+            if 0<=i<=100000: 
+                if Time[i]==0:
+                    Time[i]=Time[a]+1
+                    que.append(i)
+                    ways[i]+=ways[a]
 
-                elif locate[next] == locate[now]+1:  # 최단시간으로 재방문했을때
-                    ways[next] += ways[now]
-
-    locate[K] -= 1
+                elif Time[i]==Time[a]+1:
+                    ways[i]+=ways[a]
 
 
-N, K = map(int, input().split())
-Max = 200001
-locate = [0]*Max
-ways = [0]*Max
+N,K=map(int,input().split())
 
-if K < N:
-    print(abs(K-N))
-    print(1)
-elif K == N:
+#시간과 가지수
+Time=[0]*100001
+ways=[0]*100001
+
+if N<K:
+    bfs(N)
+    print(Time[K])
+    print(ways[K])
+elif N==K:
     print(0)
     print(1)
 else:
-    bfs(N)
-    print(locate[K])
-    print(ways[K])
-
+    print(N-K)
+    print(1)
