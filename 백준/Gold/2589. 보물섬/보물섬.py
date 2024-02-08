@@ -1,35 +1,33 @@
 import sys
 from collections import deque
-input = sys.stdin.readline
+input=sys.stdin.readline
 
 
-def bfs(y, x):
-    vector = [[1, 0], [0, 1], [-1, 0], [0, -1]]
-    visited = [[0]*X for _ in range(Y)]
-    visited[y][x] = 1
-    que = deque()
-    que.append([y, x])
+def bfs(by,bx):
+    global answer
+    #매루프마다 초기화해서 브루트포스 돌리기용 board
+    board=list([0]*M for _ in range(N))
+    board[by][bx]=1
+    que=deque()
+    que.append([by,bx])
     while que:
-        y, x = que.popleft()
-        for vy, vx in vector:
-            my, mx = vy+y, vx+x
-            if 0 <= my < Y and 0 <= mx < X and board[my][mx] == "L" and visited[my][mx] == 0:
-                visited[my][mx] = visited[y][x]+1
-                que.append([my, mx])
-   # print(*visited, sep="\n")
-    return visited[y][x]-1
+        y,x=que.popleft()
+        for vy,vx in vector:
+            my,mx=vy+y,vx+x
+            if 0<=my<N and 0<=mx<M and board[my][mx]==0 and map[my][mx]=="L":
+                board[my][mx]=board[y][x]+1
+                que.append([my,mx])
+                answer=max(answer,board[my][mx])
+              
 
 
-Y, X = map(int, input().split())
-board = [list(input().strip()) for _ in range(Y)]
-max_value = 0
-
-# 'L'마다 탐색
-# -> return되는 visited(최종 이동거리값)을 max_value에 저장
-for i in range(Y):
-    for j in range(X):
-        if board[i][j] == "L":
-            max_value = max(max_value, bfs(i, j))
-
-# max값 출력
-print(max_value)
+N,M=map(int,input().split())
+map=list(list(input().rstrip())for _ in range(N))
+vector=[[0,1],[-1,0],[1,0],[0,-1]]
+answer=0
+for i in range(N):
+    for j in range(M):
+        if map[i][j]=="L":
+            bfs(i,j)
+print(answer-1)
+#print(*board,sep="\n")
