@@ -1,5 +1,7 @@
 # [Gold V] 평범한 배낭 - 12865 
 
+📘 **日本語バージョンはこちら → [READMEJP.md](./READMEJP.md)**  
+
 [문제 링크](https://www.acmicpc.net/problem/12865) 
 
 ### 성능 요약
