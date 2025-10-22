@@ -1,5 +1,7 @@
 # [Gold V] 적록색약 - 10026 
 
+📘 **日本語バージョンはこちら → [READMEJP.md](./READMEJP.md)**  
+
 [문제 링크](https://www.acmicpc.net/problem/10026) 
 
 ### 성능 요약
