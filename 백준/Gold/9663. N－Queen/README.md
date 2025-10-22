@@ -1,5 +1,7 @@
 # [Gold IV] N-Queen - 9663 
 
+📘 **日本語バージョンはこちら → [READMEJP.md](./READMEJP.md)**  
+
 [문제 링크](https://www.acmicpc.net/problem/9663) 
 
 ### 성능 요약
