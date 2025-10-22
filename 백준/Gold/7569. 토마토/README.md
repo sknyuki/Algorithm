@@ -1,5 +1,7 @@
 # [Gold V] 토마토 - 7569 
 
+📘 **日本語バージョンはこちら → [READMEJP.md](./READMEJP.md)**  
+
 [문제 링크](https://www.acmicpc.net/problem/7569) 
 
 ### 성능 요약
