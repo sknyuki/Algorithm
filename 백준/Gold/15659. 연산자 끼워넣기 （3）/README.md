@@ -1,5 +1,7 @@
 # [Gold IV] 연산자 끼워넣기 (3) - 15659 
 
+📘 **日本語バージョンはこちら → [READMEJP.md](./READMEJP.md)**  
+
 [문제 링크](https://www.acmicpc.net/problem/15659) 
 
 ### 성능 요약
